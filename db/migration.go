@@ -7,5 +7,5 @@ import (
 func Migrate() {
 	db := InitDb()
 	db.SingularTable(true)
-	db.AutoMigrate(&model.Mahasiswa{})
+	db.AutoMigrate(&model.Mahasiswa{}, model.User{})
 }
