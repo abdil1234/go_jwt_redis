@@ -8,7 +8,7 @@ import (
 	"rest_api/model"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	jwt "github.com/dgrijalva/jwt-go"
 )
 
 func HandlerLogin(w http.ResponseWriter, r *http.Request) {

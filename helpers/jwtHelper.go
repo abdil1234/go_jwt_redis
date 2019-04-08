@@ -3,7 +3,7 @@ package helpers
 import (
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	jwt "github.com/dgrijalva/jwt-go"
 )
 
 type MyClaims struct {
