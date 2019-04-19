@@ -2,14 +2,15 @@ version: '2.3'
 
 services:
   mysql:
+    container_name: mysql-db1
     image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=kerjakansekarang
       - MYSQL_DATABASE=go_rest
       - MYSQL_USER=user1
       - MYSQL_PASSWORD=user1
-    
-      ports: 123:123
+    ports: 
+      - 123:123
 
   redis:
     container_name: redis-server1
