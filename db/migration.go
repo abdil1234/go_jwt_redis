@@ -5,7 +5,6 @@ import (
 )
 
 func Migrate() {
-	db := InitDb()
-	db.SingularTable(true)
-	db.AutoMigrate(&model.Mahasiswa{}, model.User{})
+	DBCon.SingularTable(true)
+	DBCon.AutoMigrate(&model.Mahasiswa{}, model.Users{})
 }

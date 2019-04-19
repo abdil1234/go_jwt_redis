@@ -54,13 +54,10 @@ func HandlerLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func authenticateUser(username, password string) (bool, string) {
-	db := db.InitDb()
-	defer db.Close()
+	var user model.Users
+	var emptyUser = model.Users{}
 
-	var user model.User
-	var emptyUser = model.User{}
-
-	db.Where("nama = ? AND password = ?", username, password).Find(&user)
+	db.DBCon.Where("nama = ? AND password = ?", username, password).Find(&user)
 
 	if user != emptyUser {
 		return true, username

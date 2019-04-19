@@ -1,6 +1,6 @@
 package model
 
-type User struct {
+type Users struct {
 	Id       uint `gorm:"primary_key"`
 	Nama     string
 	Password string

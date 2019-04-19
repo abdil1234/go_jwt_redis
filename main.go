@@ -8,10 +8,10 @@ import (
 	"rest_api/handler"
 	"rest_api/middleware"
 
+	"github.com/go-redis/redis"
 	"github.com/gorilla/mux"
+	"github.com/jinzhu/gorm"
 )
-
-var port string = ":8081"
 
 func handleRequest() {
 	r := mux.NewRouter().StrictSlash(true)
@@ -32,11 +32,38 @@ func handleRequest() {
 	r.HandleFunc("/users/create", handler.CreateUser).Methods("POST")
 	r.HandleFunc("/users/delete/{id}", handler.DeleteUser).Methods("DELETE")
 
-	log.Fatal(http.ListenAndServe(port, r))
+	log.Fatal(http.ListenAndServe(":8081", r))
 }
 
 func main() {
-	fmt.Println("Go run on port %s \n", port)
+	var err error
+
+	//db connection
+	db.DBCon, err = gorm.Open("mysql", "root:kerjakansekarang@/rest_golang?charset=utf8&parseTime=True&loc=Local")
+
+	if err != nil {
+		fmt.Println(err.Error())
+		panic("Failed connect db")
+	}
+
+	defer db.DBCon.Close()
+
+	//redis connection
+	db.ReCon = redis.NewClient(&redis.Options{
+		Addr:     "127.0.0.1:4321",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
+
+	_, err = db.ReCon.Ping().Result()
+	defer db.ReCon.Close()
+
+	if err != nil {
+		fmt.Println(err.Error())
+		panic("Failed connect redis")
+	}
+
+	fmt.Println("Go run on port %s \n", ":8081")
 	db.Migrate()
 	handleRequest()
 }
