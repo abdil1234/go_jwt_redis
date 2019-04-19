@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
 	"rest_api/db"
 	"rest_api/handler"
 	"rest_api/middleware"
 
 	"github.com/go-redis/redis"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 )

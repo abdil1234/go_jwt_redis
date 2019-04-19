@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
+
 	"rest_api/db"
 	"rest_api/model"
-	"time"
 
 	"github.com/go-redis/redis"
 )

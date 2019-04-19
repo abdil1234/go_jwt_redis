@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"rest_api/helpers"
 	"strings"
+
+	"rest_api/helpers"
 
 	"github.com/dgrijalva/jwt-go"
 )

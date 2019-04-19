@@ -3,10 +3,11 @@ package handler
 import (
 	"encoding/json"
 	"net/http"
+	"time"
+
 	"rest_api/db"
 	"rest_api/helpers"
 	"rest_api/model"
-	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
 )
