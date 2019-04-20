@@ -2,11 +2,11 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"time"
 
 	"go_jwt_redis/db"
+	"go_jwt_redis/helpers"
 	"go_jwt_redis/model"
 
 	"github.com/go-redis/redis"
@@ -15,24 +15,25 @@ import (
 func AllMahasiswa(w http.ResponseWriter, r *http.Request) {
 
 	var mahasiswas []model.Mahasiswa
-
-	//get redis data
-	mahasiswaData, err := db.ReCon.Get("mahasiswas").Result()
+	//cek redis data
+	_, err := db.ReCon.Get("mahasiswas").Result()
 
 	if err == redis.Nil {
+
 		db.DBCon.Find(&mahasiswas)
 		data, _ := json.Marshal(mahasiswas)
-
 		//set redis data
-		err := db.ReCon.Set("mahasiswas", data, 3*time.Second).Err()
+		err := db.ReCon.Set("mahasiswas", data, time.Hour).Err()
 		if err != nil {
 			panic(err)
 		}
-	} else if err != nil {
-		panic(err)
 	}
 
-	fmt.Fprint(w, mahasiswaData)
+	//get redis data
+
+	mahasiswaData, _ := db.ReCon.Get("mahasiswas").Result()
+
+	helpers.ResJSON(w, []byte(mahasiswaData))
 
 }
 
@@ -41,7 +42,13 @@ func CreateMahasiswa(w http.ResponseWriter, r *http.Request) {
 	var mahasiswa model.Mahasiswa
 	json.NewDecoder(r.Body).Decode(&mahasiswa)
 	db.DBCon.Create(&mahasiswa)
-	json.NewEncoder(w).Encode(mahasiswa)
+
+	d, _ := json.Marshal(mahasiswa)
+
+	//empty redis data
+	db.ReCon.Del("mahasiswas")
+
+	helpers.ResJSON(w, []byte(d))
 
 }
 
@@ -72,7 +79,9 @@ func UpdateMahasiswa(w http.ResponseWriter, r *http.Request) {
 	json.NewDecoder(r.Body).Decode(&mahasiswa)
 
 	db.DBCon.Save(&mahasiswa)
-	json.NewEncoder(w).Encode(mahasiswa)
+	d, _ := json.Marshal(mahasiswa)
+
+	helpers.ResJSON(w, []byte(d))
 }
 
 func DeleteMahasiswa(w http.ResponseWriter, r *http.Request) {
@@ -97,9 +106,10 @@ func DeleteMahasiswa(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.Unmarshal([]byte(mahasiswaData), &mahasiswa)
-
 	db.DBCon.Delete(&mahasiswa)
 
-	json.NewEncoder(w).Encode(mahasiswa)
+	d, _ := json.Marshal(mahasiswa)
+
+	helpers.ResJSON(w, []byte(d))
 
 }
