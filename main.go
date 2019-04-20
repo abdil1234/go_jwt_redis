@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"rest_api/db"
-	"rest_api/handler"
-	"rest_api/middleware"
+	"go_jwt_redis/db"
+	"go_jwt_redis/handler"
+	"go_jwt_redis/middleware"
 
 	"github.com/go-redis/redis"
 	_ "github.com/go-sql-driver/mysql"

@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"rest_api/helpers"
+	"go_jwt_redis/helpers"
 
 	"github.com/dgrijalva/jwt-go"
 )

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"rest_api/db"
-	"rest_api/model"
+	"go_jwt_redis/db"
+	"go_jwt_redis/model"
 )
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {

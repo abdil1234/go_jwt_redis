@@ -1,7 +1,7 @@
 package db
 
 import (
-	"rest_api/model"
+	"go_jwt_redis/model"
 )
 
 func Migrate() {

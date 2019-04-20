@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"rest_api/db"
-	"rest_api/model"
+	"go_jwt_redis/db"
+	"go_jwt_redis/model"
 
 	"github.com/go-redis/redis"
 )

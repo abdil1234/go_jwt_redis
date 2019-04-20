@@ -1,7 +1,7 @@
 FROM golang:alpine
 
 # Set an env var that matches your github repo name, replace treeder/dockergo here with your repo name
-ENV SRC_DIR=/go/src/rest_api/
+ENV SRC_DIR=/go/src/go_jwt_redis/
 # Add the source code:
 ADD . $SRC_DIR
 WORKDIR $SRC_DIR

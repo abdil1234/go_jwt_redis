@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"rest_api/db"
-	"rest_api/helpers"
-	"rest_api/model"
+	"go_jwt_redis/db"
+	"go_jwt_redis/helpers"
+	"go_jwt_redis/model"
 
 	jwt "github.com/dgrijalva/jwt-go"
 )
