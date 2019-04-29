@@ -16,7 +16,7 @@ USAGE :
 -----
 ###  USER ENDPOINTS 
  - **POST** http://localhost:8081/users/create (*create users data*)
- - **DELETE** http://localhost:8081/users/delete{id} (*delete users data*)
+ - **DELETE** http://localhost:8081/users/delete/{id} (*delete users data*)
 
 ### GET TOKEN
 
