@@ -2,7 +2,7 @@
 USAGE : 
 -----
 
-### GET JWT TOKEN
+### GET TOKEN
 
 ```
     curl -X POST --user username:password http://localhost:8081/login
