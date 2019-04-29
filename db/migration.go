@@ -1,7 +1,7 @@
 package db
 
 import (
-	"go_jwt_redis/model"
+	"github.com/abdil1234/go_jwt_redis/model"
 )
 
 func Migrate() {
