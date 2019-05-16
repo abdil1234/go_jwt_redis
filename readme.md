@@ -8,6 +8,7 @@ Go Simple Features :
 
 INSTALLATION : 
 -----
+ - docker compose up
  - brew install dep
  - cd $GOPATH/src/github.com/me/go_jwt_redis
  - dep ensure
